@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #define SIZE 1000
 
 char *base64E(char input[], int length)
 {
@@ -96,11 +95,8 @@ char *base64D(char encoded[], int len_str)
 
 int main() 
 { 
-    char input_string[] = "MENON"; 
-    int len_str = sizeof(input_string) / sizeof(input_string[0]); 
-  
-    // Do not count last NULL character. 
-    len_str -= 1; 
+    char input_string[] = "Rishi Ravikumar"; 
+    int len_str = sizeof(input_string)-1; 
     char *e = base64E(input_string, len_str);
     printf("Encoded string : %s\n", e); 
     printf("Decoded_string : %s\n", base64D(e, len_str)); 
