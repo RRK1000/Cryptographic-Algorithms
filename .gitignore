@@ -10,3 +10,5 @@
 *.o
 *.out
 
+.gitignore.swp
+*.swp
