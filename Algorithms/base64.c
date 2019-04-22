@@ -5,33 +5,35 @@ char *base64E(char input[], int length)
 {
     char b64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     char *result = (char *)malloc(1000 * sizeof(char));
-    int index, no_of_bits = 0, padding = 0, val, count = 0, temp;
+    int index, bits = 0, padding = 0, val, count = 0, temp;
     int i, j, k = 0;
     for (i = 0; i < length; i += 3)
     {
-        val = 0, count = 0, no_of_bits = 0;
+        val = 0, count = 0, bits = 0;
 
         for (j = i; j < length && j <= i + 2; j++)
         {
-            val = val << 8;
+            val = val << 8;           
             val = val | input[j];
             count++;
         }
-        no_of_bits = count * 8;
-        padding = no_of_bits % 3;
-        while (no_of_bits != 0)
+        bits = count * 8;
+        padding = bits % 3;
+        while (bits != 0)
         {
-            if (no_of_bits >= 6)
+            if (bits >= 6)
             {
-                temp = no_of_bits - 6;
+                temp = bits - 6;
                 index = (val >> temp) & 63;
-                no_of_bits -= 6;
+                printf("Index:%d\n",index);
+                bits -= 6;
             }
             else
             {
-                temp = 6 - no_of_bits;
+                temp = 6 - bits;
                 index = (val << temp) & 63;
-                no_of_bits = 0;
+                printf("Index:%d\n",index);
+                bits = 0;
             }
             result[k++] = b64[index];
         }
@@ -54,16 +56,16 @@ char *base64D(char encoded[], int len_str)
 
     int i, j, k = 0;
     int num = 0;
-    int count_bits = 0;
+    int bits = 0;
     for (i = 0; i < len_str; i += 4)
     {
-        num = 0, count_bits = 0;
+        num = 0, bits = 0;
         for (j = 0; j < 4; j++)
         {
             if (encoded[i + j] != '=')
             {
                 num = num << 6;
-                count_bits += 6;
+                bits += 6;
             }
             if (encoded[i + j] >= 'A' && encoded[i + j] <= 'Z')
                 num = num | (encoded[i + j] - 'A');
@@ -78,14 +80,13 @@ char *base64D(char encoded[], int len_str)
             else
             {
                 num = num >> 2;
-                count_bits -= 2;
+                bits -= 2;
             }
         }
-
-        while (count_bits != 0)
+        while (bits != 0)
         {
-            count_bits -= 8;
-            decoded_string[k++] = (num >> count_bits) & 255;
+            bits -= 8;
+            decoded_string[k++] = (num >> bits) & 255;
         }
     }
     decoded_string[k] = '\0';
@@ -95,7 +96,7 @@ char *base64D(char encoded[], int len_str)
 
 int main() 
 { 
-    char input_string[] = "Rishi Ravikumar"; 
+    char input_string[] = "geeksforgeeks"; 
     int len_str = sizeof(input_string)-1; 
     char *e = base64E(input_string, len_str);
     printf("Encoded string : %s\n", e); 
