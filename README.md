@@ -9,6 +9,6 @@
 2. Base64 
 3. RC5
 4. RSA
-- To compile the RSA code use gcc RSA.c -lm
+- To compile the RSA code execute the command gcc RSA.c -lm
 
 
