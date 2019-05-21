@@ -11,4 +11,19 @@
 4. RSA
 - To compile the RSA code execute the command gcc RSA.c -lm
 
+## Outputs
+Base64 
+ 
+
+Blowfish 
+ 
+
+RC5
+ 
+
+RSA
+ 
+
+
+
 
