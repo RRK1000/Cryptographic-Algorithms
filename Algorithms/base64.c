@@ -25,14 +25,14 @@ char *base64E(char input[], int length)
             {
                 temp = bits - 6;
                 index = (val >> temp) & 63;
-                printf("Index:%d\n",index);
+                // printf("Index:%d\n",index);
                 bits -= 6;
             }
             else
             {
                 temp = 6 - bits;
                 index = (val << temp) & 63;
-                printf("Index:%d\n",index);
+                // printf("Index:%d\n",index);
                 bits = 0;
             }
             result[k++] = b64[index];
@@ -96,7 +96,7 @@ char *base64D(char encoded[], int len_str)
 
 int main() 
 { 
-    char input_string[] = "geeksforgeeks"; 
+    char input_string[] = "abcDE4"; 
     int len_str = sizeof(input_string)-1; 
     char *e = base64E(input_string, len_str);
     printf("Encoded string : %s\n", e); 

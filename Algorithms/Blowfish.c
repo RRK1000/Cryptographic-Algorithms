@@ -1,5 +1,5 @@
 
-#include "bf.h"
+#include "blowfish.h"
 #include<string.h>
 
 #define BLOWFISH_F(x) \
