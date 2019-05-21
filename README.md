@@ -7,5 +7,8 @@
 ## Algorithms Implemented
 1. Blowfish
 2. Base64 
-3. RSA
-4. RC5
+3. RC5
+4. RSA
+- To compile the RSA code use gcc RSA.c -lm
+
+
